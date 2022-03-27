@@ -1,0 +1,4 @@
+pymorphy2
+sentry-sdk
+python-dateutil
+requests

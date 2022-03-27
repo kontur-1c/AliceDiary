@@ -1,0 +1,55 @@
+filler:
+    что|по|на|какая|какое|надо|и|пожалуйста
+slots:
+    subject1:
+        source: $S1
+        type: SchoolSubject
+    subject2:
+        source: $S2
+        type: SchoolSubject
+    subject3:
+        source: $S3
+        type: SchoolSubject
+    subject4:
+        source: $S4
+        type: SchoolSubject
+    subject5:
+        source: $S5
+        type: SchoolSubject
+    subject6:
+        source: $S6
+        type: SchoolSubject
+    subject7:
+        source: $S7
+        type: SchoolSubject
+    subject8:
+        source: $S8
+        type: SchoolSubject
+    subject9:
+        source: $S9
+        type: SchoolSubject
+root:
+    %lemma
+    задали .* $S1? $S2? $S3? $S4? $S5? $S6? $S7? $S8? $S9? .*
+    домашнее задание .* $S1? $S2? $S3? $S4? $S5? $S6? $S7? $S8? $S9? .*
+    домашка .* $S1? $S2? $S3? $S4? $S5? $S6? $S7? $S8? $S9? .*
+$S1:
+    $SchoolSubject
+$S2:
+    $SchoolSubject
+$S3:
+    $SchoolSubject
+$S4:
+    $SchoolSubject
+$S5:
+    $SchoolSubject
+$S6:
+    $SchoolSubject
+$S7:
+    $SchoolSubject
+$S8:
+    $SchoolSubject
+$S9:
+    $SchoolSubject
+$When:
+    $YANDEX.DATETIME

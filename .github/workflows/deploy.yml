@@ -1,0 +1,37 @@
+name: Deploy Alice skill
+
+on:
+  push:
+    paths-ignore:
+      - '**.md'
+      - '**.grammar'
+      - '**.txt'
+
+jobs:
+  Deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Deploy stating
+        if: github.ref != 'refs/heads/main'
+        uses: goodsmileduck/yandex-serverless-action@v1
+        with:
+          token: ${{ secrets.YAAUTH }}
+          function_id: ${{ secrets.TEST_FUNCTION_ID }}
+          runtime: 'python37'
+          memory: '128'
+          environment: DEBUG=True
+          entrypoint: 'skill.main.handler'
+          source: './'
+      - name: Deploy production
+        if: github.ref == 'refs/heads/main'
+        uses: goodsmileduck/yandex-serverless-action@v1
+        with:
+          token: ${{ secrets.YAAUTH }}
+          function_id: ${{ secrets.FUNCTION_ID }}
+          runtime: 'python37'
+          memory: '128'
+          environment: DEBUG=False
+          entrypoint: 'skill.main.handler'
+          source: './'

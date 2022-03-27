@@ -1,0 +1,9 @@
+root:
+    %lemma
+    .* $WeekDay .*
+slots:
+    Day:
+        source: $WeekDay
+        type: DayOfWeek
+$WeekDay:
+    $DayOfWeek

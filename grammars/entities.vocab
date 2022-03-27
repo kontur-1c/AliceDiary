@@ -1,0 +1,122 @@
+entity SchoolSubject:
+    lemma: true
+    values:
+        maths:
+            математика
+            алгебра
+            матеша
+        geometry:
+            геометрия
+        calligraphy:
+            чистописание
+        reading:
+            чтение
+        work:
+            труд
+        natural:
+            природовение
+            природа
+            окружающий мир
+        music:
+            музыка
+            пение
+        art:
+            изобразительное искусство
+            изо
+            рисование
+        russianLanguage:
+            русский язык
+            русский
+            русич
+        physicalEducation:
+            физкультура
+            физическая культура
+            физра
+            фезра
+            плавание
+        nativeLanguage:
+            родной язык
+        foundationsOfReligiousCulturesAndSecularEthics:
+            основы религиозных культур и светской этики
+            основы религиозных культур
+            основы светской этики
+        foreignLanguage:
+            иностранный язык
+            иностранный
+            ин яз
+            иняз
+            английский
+            французский
+            инглиш
+        civics:
+            граждановедение
+        localHistory:
+            краеведение
+        history:
+            история
+            история россии
+            всеобщая история
+        literature:
+            литература
+            литра
+        bls:
+            обж
+            основы безопасности жизнедеятельности
+        technology:
+            технология
+        geography:
+            география
+        biology:
+            биология
+        computerScience:
+            информатика
+            программирование
+        socialStudies:
+            обществознание
+            общество
+        drawing:
+            черчение
+        physics:
+            физика
+        chemistry:
+            химия
+        naturalScience:
+            естествознание
+        fundamentalsOfEconomics:
+            основы экономики
+        jurisprudence:
+            правоведение
+            право
+        philosophy:
+            философия
+        ecology:
+            экология
+        astronomy:
+            астраномия
+        basicMilitaryTraining:
+            нвп
+            начальная военная подготовка
+        worldArt:
+            мировая художественная культура
+            МХК
+            мировая культура
+        rhetoric:
+            риторика
+
+entity DayOfWeek:
+    lemma: true
+    values:
+        Monday:
+            понедельник
+        Tuesday:
+            вторник
+        Wednesday:
+            среда
+        Thursday:
+            четверг
+        Friday:
+            пятница
+        Saturday:
+            суббота
+        Sunday:
+            воскресение
