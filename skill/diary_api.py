@@ -1,14 +1,37 @@
+import os
 from datetime import date, datetime, time
 from typing import List
 
 import requests
 
-from skill.constants.urls import BASE_URL
 from skill.schemas import PlannedLesson, Student
 
 
 class NotFoundError(Exception):
     pass
+
+
+# region URLs
+
+
+def base_url():
+    if os.environ.get("DEBUG", "False").lower() in ("true", "1", "t"):
+        url = "https://journal.bpo.edu.n3demo.ru/api/journal"
+    else:
+        url = "https://dnevnik2.petersburgedu.ru/api/journal"
+
+    return url
+
+
+def schedule_url():
+    return f"{base_url()}/schedule/list-by-education"
+
+
+def students_url():
+    return f"{base_url()}/person/related-child-list"
+
+
+# endregion
 
 
 def get_schedule_on_date(token: str, id: str, day=None) -> List[PlannedLesson]:
@@ -20,7 +43,7 @@ def get_schedule_on_date(token: str, id: str, day=None) -> List[PlannedLesson]:
     finish_time = datetime.combine(day, time.max)
 
     response = requests.get(
-        BASE_URL + "/schedule/list-by-education",
+        schedule_url(),
         params={
             "p_educations[]": id,
             "p_datetime_from": datetime.strftime(start_time, "%d.%m.%Y %H:%M:%S"),
@@ -45,9 +68,7 @@ def get_schedule_on_date(token: str, id: str, day=None) -> List[PlannedLesson]:
 
 
 def get_students(token: str) -> List[Student]:
-    response = requests.get(
-        f"{BASE_URL}/person/related-child-list", cookies={"X-JWT-Token": token}
-    )
+    response = requests.get(students_url(), cookies={"X-JWT-Token": token})
 
     if response.status_code == 401:
         raise Exception("Не удалось авторизоваться")
