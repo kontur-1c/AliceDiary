@@ -103,7 +103,7 @@ class Todo(GlobalScene):
 
     def handle_local_intents(self, request: Request):
         if intents.CONFIRM in request.intents:
-            return GetSchedule()
+            return get_scene_for_schedule(request)
 
 
 class Goodbye(GlobalScene):
