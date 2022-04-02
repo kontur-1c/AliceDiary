@@ -79,6 +79,9 @@ class Welcome(GlobalScene):
         if intents.REJECT in request.intents:
             return MaybeHelp()
 
+        if request.authorization_complete:
+            return Todo()
+
 
 class Todo(GlobalScene):
     def reply(self, request: Request):
