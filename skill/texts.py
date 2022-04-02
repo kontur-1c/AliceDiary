@@ -232,7 +232,7 @@ def __print_lesson(lesson):
 
 
 def __how_many_lessons(n: int) -> str:
-    return str(n) + " " + LESSON.make_agree_with_number(num).word
+    return str(n) + " " + LESSON.make_agree_with_number(n).word
 
 
 # endregion

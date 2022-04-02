@@ -55,6 +55,9 @@ def get_schedule_on_date(token: str, id: str, day=None) -> List[PlannedLesson]:
     if response.status_code == 500:
         return []
 
+    if response.status_code == 401:
+        raise Exception("Не удалось авторизоваться")
+
     result = []
     for lesson in response.json().get("data", {}).get("items", []):
         lesson_from = datetime.strptime(
