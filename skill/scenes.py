@@ -79,6 +79,9 @@ class Welcome(GlobalScene):
         if intents.REJECT in request.intents:
             return MaybeHelp()
 
+        if request.authorization_complete:
+            return Todo()
+
 
 class Todo(GlobalScene):
     def reply(self, request: Request):
@@ -103,7 +106,7 @@ class Todo(GlobalScene):
 
     def handle_local_intents(self, request: Request):
         if intents.CONFIRM in request.intents:
-            return GetSchedule()
+            return get_scene_for_schedule(request)
 
 
 class Goodbye(GlobalScene):
