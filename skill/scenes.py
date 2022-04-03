@@ -259,7 +259,7 @@ class GetSchedule(GlobalScene):
             student = Student(**context.get("student"))
             return GetSchedule(student)
         if intents.REJECT in request.intents or intents.MAIN_MENU in request.intents:
-            return Welcome()
+            return Todo()
 
 
 class ChooseStudentSchedule(GlobalScene):
