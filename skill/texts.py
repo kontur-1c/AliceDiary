@@ -39,7 +39,7 @@ def todo_list(todo):
 
     result.append("Хотите узнать подробное расписание на сегодня?")
     text = "Список дел на сегодня"
-    tts = " ".join(result)
+    tts = " sil<[200]>".join(result)
 
     return text, tts
 
