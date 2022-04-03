@@ -19,7 +19,7 @@ logging.getLogger("requests.packages.urllib3").setLevel(logging.DEBUG)
 # root.addHandler(handler)
 
 root_handler = logging.getLogger().handlers[0]
-root_handler.setFormatter(logging.Formatter("[%(levelname)s]\t%(name)s\t%(message)s\n"))
+root_handler.setFormatter(logging.Formatter("'[%(levelname)s]\t%(name)s\t%(request_id)s\t%(message)s\n'"))
 
 
 def handler(event, context):
