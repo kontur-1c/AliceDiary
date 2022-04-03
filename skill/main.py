@@ -10,12 +10,16 @@ from skill.constants.intents import GET_SCHEDULE
 from skill.constants.state import PREVIOUS_MOVES
 from skill.scenes import DEFAULT_SCENE, SCENES, WELCOME_SCENE
 
-root = logging.getLogger()
-root.setLevel(logging.DEBUG)
+logging.basicConfig()
 
-handler = logging.StreamHandler(sys.stdout)
-handler.setLevel(logging.DEBUG)
-root.addHandler(handler)
+logging.getLogger().setLevel(logging.DEBUG)
+logging.getLogger("requests.packages.urllib3").setLevel(logging.DEBUG)
+# handler = logging.StreamHandler(sys.stdout)
+# handler.setLevel(logging.DEBUG)
+# root.addHandler(handler)
+
+root_handler = logging.getLogger().handlers[0]
+root_handler.setFormatter(logging.Formatter("[%(levelname)s]\t%(name)s\t%(message)s\n"))
 
 
 def handler(event, context):
