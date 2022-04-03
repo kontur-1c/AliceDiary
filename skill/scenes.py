@@ -90,7 +90,8 @@ class Todo(GlobalScene):
         user_state_students = []
         if not students:
             students = diary_api.get_students(request.access_token)
-            user_state_students = [x.dump() for x in students]
+
+        user_state_students = [x.dump() for x in students]
 
         todo = _prepare_todo_list(request.access_token, students)
         cards = _prepare_cards_todo(todo)
@@ -258,7 +259,7 @@ class GetSchedule(GlobalScene):
             student = Student(**context.get("student"))
             return GetSchedule(student)
         if intents.REJECT in request.intents or intents.MAIN_MENU in request.intents:
-            return Welcome()
+            return Todo()
 
 
 class ChooseStudentSchedule(GlobalScene):
