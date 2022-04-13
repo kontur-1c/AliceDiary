@@ -72,7 +72,7 @@ class Welcome(GlobalScene):
             tts,
             buttons=buttons,
             directives={"start_account_linking": {}},
-            user_state=None
+            user_state=None,
         )
 
     def handle_local_intents(self, request: Request):
@@ -84,11 +84,14 @@ class Welcome(GlobalScene):
 
 
 class Todo(GlobalScene):
+    def __init__(self, force_update_students=False):
+        self.force_update_students = force_update_students
+
     def reply(self, request: Request):
 
         students = get_all_students_from_request(request)
         user_state_students = []
-        if not students:
+        if not students or self.force_update_students:
             students = diary_api.get_students(request.access_token)
 
         user_state_students = [x.dump() for x in students]
@@ -102,7 +105,7 @@ class Todo(GlobalScene):
             tts,
             card=image_list(cards, header=text),
             buttons=[button("Расписание уроков"), button("Расписание на завтра")],
-            user_state={state.STUDENTS: user_state_students}
+            user_state={state.STUDENTS: user_state_students},
         )
 
     def handle_local_intents(self, request: Request):
@@ -163,12 +166,7 @@ class HelpMenu(GlobalScene):
         students = get_all_students_from_request(request)
 
         text, tts = texts.help_menu_start(students)
-        return self.make_response(
-            request,
-            text,
-            tts,
-            buttons=YES_NO
-        )
+        return self.make_response(request, text, tts, buttons=YES_NO)
 
     def handle_local_intents(self, request: Request):
         if intents.CONFIRM in request.intents:
@@ -307,7 +305,12 @@ class ClearSettings(GlobalScene):
     def reply(self, request: Request):
 
         return self.make_response(
-            request, "Сброс", "Сброс", state={}, user_state={state.STUDENTS: None}, end_session=True
+            request,
+            "Сброс",
+            "Сброс",
+            state={},
+            user_state={state.STUDENTS: None},
+            end_session=True,
         )
 
 
